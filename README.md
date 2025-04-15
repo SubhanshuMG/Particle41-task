@@ -91,9 +91,8 @@ curl http://$(terraform output -raw alb_dns_name)
 
 In my case alb_dns was - 'http://prod-alb-1489230757.us-east-1.elb.amazonaws.com/'
 
-![deployment screenshot](screenshots/deployment.png)
 ```
-
+![deployment screenshot](screenshots/deployment.png)
 
 ## 🚨 Troubleshooting
 
@@ -131,24 +130,29 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET"
 
 ```bash
 1. Inspect planned changes
-[plan_output.txt](terraform/plan_output.txt)
 Plan output shows:
 - creation of all necessary resources
+```
+[plan_output.txt](terraform/plan_output.txt)
 
-
+```bash
 2. Review apply outputs
-[apply_output.txt](terraform/apply_output.txt)
 Confirm output shows:
 - ALB DNS name
 - ECS cluster ARN
 - Security group IDs
+```
+[apply_output.txt](terraform/apply_output.txt)
 
+```bash
 3. Validate destruction
-[destroy_output.txt](terraform/destroy_output.txt)
 Verify output confirms removal of:
 - VPC resources
 - ECS cluster
 - Load balancer components
+```
+[destroy_output.txt](terraform/destroy_output.txt)
+<br><br>
 
 ## 🏆 Best Practices Implemented
 
