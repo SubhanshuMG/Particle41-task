@@ -12,6 +12,7 @@ A cloud-native solution implementing infrastructure-as-code (IaC) best practices
 - [Prerequisites](#-prerequisites)
 - [Deployment](#-deployment)
 - [Troubleshooting](#-troubleshooting)
+- [Validation](#-validation)
 - [Best Practices](#-best-practices)
 - [Cleanup](#-cleanup)
 
@@ -61,8 +62,8 @@ cd particle41-devops-challenge
 ### 2. Build & Push Docker Image
 ```bash
 cd app
-docker build -t <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest .
-docker push <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest
+docker build -t subhanshumg/simple-time-service:latest .
+docker push subhanshumg/simple-time-service:latest
 ```
 
 ### 3. Deploy Infrastructure
@@ -73,10 +74,10 @@ cd terraform
 terraform init
 
 # Review execution plan
-terraform plan -var="container_image=<YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest"
+terraform plan -var="container_image=subhanshumg/simple-time-service:latest"
 
 # Apply configuration
-terraform apply -var="container_image=<YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest"
+terraform apply -var="container_image=subhanshumg/simple-time-service:latest"
 ```
 
 ### 4. Verify Deployment
@@ -87,7 +88,12 @@ echo "Service URL: http://$(terraform output -raw alb_dns_name)"
 # Test endpoint
 curl http://$(terraform output -raw alb_dns_name)
 # Expected response: {"timestamp":"2024-02-20T15:30:45Z","ip":"X.X.X.X"}
+
+In my case alb_dns was - 'http://prod-alb-1489230757.us-east-1.elb.amazonaws.com/'
+
+![deployment screenshot](screenshots/deployment.png)
 ```
+
 
 ## 🚨 Troubleshooting
 
@@ -119,6 +125,31 @@ export AWS_ACCESS_KEY_ID="YOUR_KEY"
 export AWS_SECRET_ACCESS_KEY="YOUR_SECRET"
 ```
 
+## ✅ Validation
+
+**Verify infrastructure integrity through Terraform outputs: **
+
+```bash
+1. Inspect planned changes
+[plan_output.txt](terraform/plan_output.txt)
+Plan output shows:
+- creation of all necessary resources
+
+
+2. Review apply outputs
+[apply_output.txt](terraform/apply_output.txt)
+Confirm output shows:
+- ALB DNS name
+- ECS cluster ARN
+- Security group IDs
+
+3. Validate destruction
+[destroy_output.txt](terraform/destroy_output.txt)
+Verify output confirms removal of:
+- VPC resources
+- ECS cluster
+- Load balancer components
+
 ## 🏆 Best Practices Implemented
 
 ### Security
@@ -144,13 +175,9 @@ export AWS_SECRET_ACCESS_KEY="YOUR_SECRET"
 terraform destroy
 
 # Remove Docker image
-docker rmi <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest
+docker rmi subhanshumg/simple-time-service:latest
 ```
-
-## 📄 License
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**Note**: Replace `<YOUR_DOCKERHUB_USERNAME>` and `<YOUR_IMAGE_URL>` with your actual Docker credentials before deployment.
-```
+**Note**: Replace `subhanshumg` and `<YOUR_IMAGE_URL>` with your actual Docker credentials before deployment.
