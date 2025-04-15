@@ -1,0 +1,1006 @@
+var.container_image
+  Container image URL
+
+  Enter a value: yes
+
+aws_iam_role.ecs_exec: Refreshing state... [id=prod-ecs-exec-role]
+aws_ecs_cluster.main: Refreshing state... [id=arn:aws:ecs:us-east-1:333554215670:cluster/prod-cluster]
+module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-0550dd2ccf3bafd8f]
+aws_iam_role_policy_attachment.ecs_exec: Refreshing state... [id=prod-ecs-exec-role-20250415154133887800000001]
+aws_ecs_task_definition.app: Refreshing state... [id=prod-task]
+module.vpc.aws_default_route_table.default[0]: Refreshing state... [id=rtb-0965ba9a17c154f6c]
+aws_security_group.alb: Refreshing state... [id=sg-065e2ae9a46e240dd]
+module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-0d940071ff0854bab]
+aws_lb_target_group.main: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7]
+module.vpc.aws_default_security_group.this[0]: Refreshing state... [id=sg-0ce56a66c3f7f0bc1]
+module.vpc.aws_route_table.private[0]: Refreshing state... [id=rtb-030e9c8859626973a]
+module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-08e1ba9cd738358f5]
+module.vpc.aws_default_network_acl.this[0]: Refreshing state... [id=acl-0deafacfdbc92b18c]
+module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-0bba2b9598e8e623a]
+module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-0797152fee2b32587]
+module.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-019e12c94340e72dc]
+module.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-0c6628c6e4c8324f4]
+aws_security_group.ecs: Refreshing state... [id=sg-05c82b8b3b30d72e9]
+module.vpc.aws_eip.nat[0]: Refreshing state... [id=eipalloc-0f694e3c397ab9316]
+module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-0d940071ff0854bab1080289494]
+module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0a4077fe14bbee3d9]
+module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0ecb864010072729f]
+aws_lb.main: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68]
+module.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-051b18007a0565798]
+module.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-095bd3fb30bf77ffa]
+module.vpc.aws_nat_gateway.this[0]: Refreshing state... [id=nat-0ccce89a1ab903e0b]
+module.vpc.aws_route.private_nat_gateway[0]: Refreshing state... [id=r-rtb-030e9c8859626973a1080289494]
+aws_lb_listener.http: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:listener/app/prod-alb/3ec6b81c1e367b68/8787d3ce93374c30]
+aws_ecs_service.main: Refreshing state... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_ecs_cluster.main will be destroyed
+  - resource "aws_ecs_cluster" "main" {
+      - arn      = "arn:aws:ecs:us-east-1:333554215670:cluster/prod-cluster" -> null
+      - id       = "arn:aws:ecs:us-east-1:333554215670:cluster/prod-cluster" -> null
+      - name     = "prod-cluster" -> null
+      - tags     = {} -> null
+      - tags_all = {} -> null
+
+      - setting {
+          - name  = "containerInsights" -> null
+          - value = "disabled" -> null
+        }
+    }
+
+  # aws_ecs_service.main will be destroyed
+  - resource "aws_ecs_service" "main" {
+      - availability_zone_rebalancing      = "DISABLED" -> null
+      - cluster                            = "arn:aws:ecs:us-east-1:333554215670:cluster/prod-cluster" -> null
+      - deployment_maximum_percent         = 200 -> null
+      - deployment_minimum_healthy_percent = 100 -> null
+      - desired_count                      = 2 -> null
+      - enable_ecs_managed_tags            = false -> null
+      - enable_execute_command             = false -> null
+      - health_check_grace_period_seconds  = 0 -> null
+      - iam_role                           = "/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS" -> null
+      - id                                 = "arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service" -> null
+      - launch_type                        = "FARGATE" -> null
+      - name                               = "prod-service" -> null
+      - platform_version                   = "LATEST" -> null
+      - propagate_tags                     = "NONE" -> null
+      - scheduling_strategy                = "REPLICA" -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - task_definition                    = "arn:aws:ecs:us-east-1:333554215670:task-definition/prod-task:2" -> null
+      - triggers                           = {} -> null
+      - wait_for_steady_state              = false -> null
+
+      - deployment_circuit_breaker {
+          - enable   = false -> null
+          - rollback = false -> null
+        }
+
+      - deployment_controller {
+          - type = "ECS" -> null
+        }
+
+      - load_balancer {
+          - container_name   = "app" -> null
+          - container_port   = 8000 -> null
+          - target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - network_configuration {
+          - assign_public_ip = false -> null
+          - security_groups  = [
+              - "sg-05c82b8b3b30d72e9",
+            ] -> null
+          - subnets          = [
+              - "subnet-019e12c94340e72dc",
+              - "subnet-0c6628c6e4c8324f4",
+            ] -> null
+        }
+    }
+
+  # aws_ecs_task_definition.app will be destroyed
+  - resource "aws_ecs_task_definition" "app" {
+      - arn                      = "arn:aws:ecs:us-east-1:333554215670:task-definition/prod-task:2" -> null
+      - arn_without_revision     = "arn:aws:ecs:us-east-1:333554215670:task-definition/prod-task" -> null
+      - container_definitions    = jsonencode(
+            [
+              - {
+                  - cpu            = 256
+                  - environment    = []
+                  - essential      = true
+                  - image          = "subhanshumg/simple-time-service"
+                  - memory         = 512
+                  - mountPoints    = []
+                  - name           = "app"
+                  - portMappings   = [
+                      - {
+                          - containerPort = 8000
+                          - hostPort      = 8000
+                          - protocol      = "tcp"
+                        },
+                    ]
+                  - systemControls = []
+                  - volumesFrom    = []
+                },
+            ]
+        ) -> null
+      - cpu                      = "256" -> null
+      - enable_fault_injection   = false -> null
+      - execution_role_arn       = "arn:aws:iam::333554215670:role/prod-ecs-exec-role" -> null
+      - family                   = "prod-task" -> null
+      - id                       = "prod-task" -> null
+      - memory                   = "512" -> null
+      - network_mode             = "awsvpc" -> null
+      - requires_compatibilities = [
+          - "FARGATE",
+        ] -> null
+      - revision                 = 2 -> null
+      - skip_destroy             = false -> null
+      - tags                     = {} -> null
+      - tags_all                 = {} -> null
+      - track_latest             = false -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # aws_iam_role.ecs_exec will be destroyed
+  - resource "aws_iam_role" "ecs_exec" {
+      - arn                   = "arn:aws:iam::333554215670:role/prod-ecs-exec-role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2025-04-15T15:41:35Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "prod-ecs-exec-role" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "prod-ecs-exec-role" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {} -> null
+      - unique_id             = "AROAU3KLBNL3IIKSSAF7B" -> null
+        # (3 unchanged attributes hidden)
+    }
+
+  # aws_iam_role_policy_attachment.ecs_exec will be destroyed
+  - resource "aws_iam_role_policy_attachment" "ecs_exec" {
+      - id         = "prod-ecs-exec-role-20250415154133887800000001" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" -> null
+      - role       = "prod-ecs-exec-role" -> null
+    }
+
+  # aws_lb.main will be destroyed
+  - resource "aws_lb" "main" {
+      - arn                                                          = "arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68" -> null
+      - arn_suffix                                                   = "app/prod-alb/3ec6b81c1e367b68" -> null
+      - client_keep_alive                                            = 3600 -> null
+      - desync_mitigation_mode                                       = "defensive" -> null
+      - dns_name                                                     = "prod-alb-1489230757.us-east-1.elb.amazonaws.com" -> null
+      - drop_invalid_header_fields                                   = false -> null
+      - enable_cross_zone_load_balancing                             = true -> null
+      - enable_deletion_protection                                   = false -> null
+      - enable_http2                                                 = true -> null
+      - enable_tls_version_and_cipher_suite_headers                  = false -> null
+      - enable_waf_fail_open                                         = false -> null
+      - enable_xff_client_port                                       = false -> null
+      - enable_zonal_shift                                           = false -> null
+      - id                                                           = "arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68" -> null
+      - idle_timeout                                                 = 60 -> null
+      - internal                                                     = false -> null
+      - ip_address_type                                              = "ipv4" -> null
+      - load_balancer_type                                           = "application" -> null
+      - name                                                         = "prod-alb" -> null
+      - preserve_host_header                                         = false -> null
+      - security_groups                                              = [
+          - "sg-065e2ae9a46e240dd",
+        ] -> null
+      - subnets                                                      = [
+          - "subnet-0797152fee2b32587",
+          - "subnet-08e1ba9cd738358f5",
+        ] -> null
+      - tags                                                         = {} -> null
+      - tags_all                                                     = {} -> null
+      - vpc_id                                                       = "vpc-0550dd2ccf3bafd8f" -> null
+      - xff_header_processing_mode                                   = "append" -> null
+      - zone_id                                                      = "Z35SXDOTRQ7X7K" -> null
+        # (3 unchanged attributes hidden)
+
+      - access_logs {
+          - enabled = false -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - connection_logs {
+          - enabled = false -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - subnet_mapping {
+          - subnet_id            = "subnet-0797152fee2b32587" -> null
+            # (4 unchanged attributes hidden)
+        }
+      - subnet_mapping {
+          - subnet_id            = "subnet-08e1ba9cd738358f5" -> null
+            # (4 unchanged attributes hidden)
+        }
+    }
+
+  # aws_lb_listener.http will be destroyed
+  - resource "aws_lb_listener" "http" {
+      - arn                                                                 = "arn:aws:elasticloadbalancing:us-east-1:333554215670:listener/app/prod-alb/3ec6b81c1e367b68/8787d3ce93374c30" -> null
+      - id                                                                  = "arn:aws:elasticloadbalancing:us-east-1:333554215670:listener/app/prod-alb/3ec6b81c1e367b68/8787d3ce93374c30" -> null
+      - load_balancer_arn                                                   = "arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68" -> null
+      - port                                                                = 80 -> null
+      - protocol                                                            = "HTTP" -> null
+      - routing_http_response_server_enabled                                = false -> null
+      - tags                                                                = {} -> null
+      - tags_all                                                            = {} -> null
+        # (11 unchanged attributes hidden)
+
+      - default_action {
+          - order            = 1 -> null
+          - target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7" -> null
+          - type             = "forward" -> null
+        }
+    }
+
+  # aws_lb_target_group.main will be destroyed
+  - resource "aws_lb_target_group" "main" {
+      - arn                                = "arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7" -> null
+      - arn_suffix                         = "targetgroup/prod-tg/aaefd6c3c6a415d7" -> null
+      - deregistration_delay               = "300" -> null
+      - id                                 = "arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7" -> null
+      - ip_address_type                    = "ipv4" -> null
+      - lambda_multi_value_headers_enabled = false -> null
+      - load_balancer_arns                 = [
+          - "arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68",
+        ] -> null
+      - load_balancing_algorithm_type      = "round_robin" -> null
+      - load_balancing_anomaly_mitigation  = "off" -> null
+      - load_balancing_cross_zone_enabled  = "use_load_balancer_configuration" -> null
+      - name                               = "prod-tg" -> null
+      - port                               = 8000 -> null
+      - protocol                           = "HTTP" -> null
+      - protocol_version                   = "HTTP1" -> null
+      - proxy_protocol_v2                  = false -> null
+      - slow_start                         = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+      - target_type                        = "ip" -> null
+      - vpc_id                             = "vpc-0550dd2ccf3bafd8f" -> null
+        # (1 unchanged attribute hidden)
+
+      - health_check {
+          - enabled             = true -> null
+          - healthy_threshold   = 3 -> null
+          - interval            = 30 -> null
+          - matcher             = "200" -> null
+          - path                = "/health" -> null
+          - port                = "traffic-port" -> null
+          - protocol            = "HTTP" -> null
+          - timeout             = 5 -> null
+          - unhealthy_threshold = 3 -> null
+        }
+
+      - stickiness {
+          - cookie_duration = 86400 -> null
+          - enabled         = false -> null
+          - type            = "lb_cookie" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - target_failover {}
+
+      - target_group_health {
+          - dns_failover {
+              - minimum_healthy_targets_count      = "1" -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+          - unhealthy_state_routing {
+              - minimum_healthy_targets_count      = 1 -> null
+              - minimum_healthy_targets_percentage = "off" -> null
+            }
+        }
+
+      - target_health_state {}
+    }
+
+  # aws_security_group.alb will be destroyed
+  - resource "aws_security_group" "alb" {
+      - arn                    = "arn:aws:ec2:us-east-1:333554215670:security-group/sg-065e2ae9a46e240dd" -> null
+      - description            = "Allow HTTP inbound traffic" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-065e2ae9a46e240dd" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTP"
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+            },
+        ] -> null
+      - name                   = "prod-alb-sg" -> null
+      - owner_id               = "333554215670" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {} -> null
+      - vpc_id                 = "vpc-0550dd2ccf3bafd8f" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_security_group.ecs will be destroyed
+  - resource "aws_security_group" "ecs" {
+      - arn                    = "arn:aws:ec2:us-east-1:333554215670:security-group/sg-05c82b8b3b30d72e9" -> null
+      - description            = "Allow traffic from ALB" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-05c82b8b3b30d72e9" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = []
+              - from_port        = 8000
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = [
+                  - "sg-065e2ae9a46e240dd",
+                ]
+              - self             = false
+              - to_port          = 8000
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "prod-ecs-sg" -> null
+      - owner_id               = "333554215670" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {} -> null
+      - vpc_id                 = "vpc-0550dd2ccf3bafd8f" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_default_network_acl.this[0] will be destroyed
+  - resource "aws_default_network_acl" "this" {
+      - arn                    = "arn:aws:ec2:us-east-1:333554215670:network-acl/acl-0deafacfdbc92b18c" -> null
+      - default_network_acl_id = "acl-0deafacfdbc92b18c" -> null
+      - id                     = "acl-0deafacfdbc92b18c" -> null
+      - owner_id               = "333554215670" -> null
+      - subnet_ids             = [
+          - "subnet-019e12c94340e72dc",
+          - "subnet-0797152fee2b32587",
+          - "subnet-08e1ba9cd738358f5",
+          - "subnet-0c6628c6e4c8324f4",
+        ] -> null
+      - tags                   = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - vpc_id                 = "vpc-0550dd2ccf3bafd8f" -> null
+
+      - egress {
+          - action          = "allow" -> null
+          - from_port       = 0 -> null
+          - icmp_code       = 0 -> null
+          - icmp_type       = 0 -> null
+          - ipv6_cidr_block = "::/0" -> null
+          - protocol        = "-1" -> null
+          - rule_no         = 101 -> null
+          - to_port         = 0 -> null
+            # (1 unchanged attribute hidden)
+        }
+      - egress {
+          - action          = "allow" -> null
+          - cidr_block      = "0.0.0.0/0" -> null
+          - from_port       = 0 -> null
+          - icmp_code       = 0 -> null
+          - icmp_type       = 0 -> null
+          - protocol        = "-1" -> null
+          - rule_no         = 100 -> null
+          - to_port         = 0 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - ingress {
+          - action          = "allow" -> null
+          - from_port       = 0 -> null
+          - icmp_code       = 0 -> null
+          - icmp_type       = 0 -> null
+          - ipv6_cidr_block = "::/0" -> null
+          - protocol        = "-1" -> null
+          - rule_no         = 101 -> null
+          - to_port         = 0 -> null
+            # (1 unchanged attribute hidden)
+        }
+      - ingress {
+          - action          = "allow" -> null
+          - cidr_block      = "0.0.0.0/0" -> null
+          - from_port       = 0 -> null
+          - icmp_code       = 0 -> null
+          - icmp_type       = 0 -> null
+          - protocol        = "-1" -> null
+          - rule_no         = 100 -> null
+          - to_port         = 0 -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.vpc.aws_default_route_table.default[0] will be destroyed
+  - resource "aws_default_route_table" "default" {
+      - arn                    = "arn:aws:ec2:us-east-1:333554215670:route-table/rtb-0965ba9a17c154f6c" -> null
+      - default_route_table_id = "rtb-0965ba9a17c154f6c" -> null
+      - id                     = "rtb-0965ba9a17c154f6c" -> null
+      - owner_id               = "333554215670" -> null
+      - propagating_vgws       = [] -> null
+      - route                  = [] -> null
+      - tags                   = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - vpc_id                 = "vpc-0550dd2ccf3bafd8f" -> null
+
+      - timeouts {
+          - create = "5m" -> null
+          - update = "5m" -> null
+        }
+    }
+
+  # module.vpc.aws_default_security_group.this[0] will be destroyed
+  - resource "aws_default_security_group" "this" {
+      - arn                    = "arn:aws:ec2:us-east-1:333554215670:security-group/sg-0ce56a66c3f7f0bc1" -> null
+      - description            = "default VPC security group" -> null
+      - egress                 = [] -> null
+      - id                     = "sg-0ce56a66c3f7f0bc1" -> null
+      - ingress                = [] -> null
+      - name                   = "default" -> null
+      - owner_id               = "333554215670" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - tags_all               = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-default"
+        } -> null
+      - vpc_id                 = "vpc-0550dd2ccf3bafd8f" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_eip.nat[0] will be destroyed
+  - resource "aws_eip" "nat" {
+      - allocation_id            = "eipalloc-0f694e3c397ab9316" -> null
+      - arn                      = "arn:aws:ec2:us-east-1:333554215670:elastic-ip/eipalloc-0f694e3c397ab9316" -> null
+      - association_id           = "eipassoc-07980f89d7d228373" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0f694e3c397ab9316" -> null
+      - network_border_group     = "us-east-1" -> null
+      - network_interface        = "eni-0aaf2b60ada3df877" -> null
+      - private_dns              = "ip-10-0-101-185.ec2.internal" -> null
+      - private_ip               = "10.0.101.185" -> null
+      - public_dns               = "ec2-184-73-151-208.compute-1.amazonaws.com" -> null
+      - public_ip                = "184.73.151.208" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - tags                     = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-us-east-1a"
+        } -> null
+      - tags_all                 = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-us-east-1a"
+        } -> null
+      - vpc                      = true -> null
+        # (5 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_internet_gateway.this[0] will be destroyed
+  - resource "aws_internet_gateway" "this" {
+      - arn      = "arn:aws:ec2:us-east-1:333554215670:internet-gateway/igw-0bba2b9598e8e623a" -> null
+      - id       = "igw-0bba2b9598e8e623a" -> null
+      - owner_id = "333554215670" -> null
+      - tags     = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc"
+        } -> null
+      - tags_all = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc"
+        } -> null
+      - vpc_id   = "vpc-0550dd2ccf3bafd8f" -> null
+    }
+
+  # module.vpc.aws_nat_gateway.this[0] will be destroyed
+  - resource "aws_nat_gateway" "this" {
+      - allocation_id                      = "eipalloc-0f694e3c397ab9316" -> null
+      - association_id                     = "eipassoc-07980f89d7d228373" -> null
+      - connectivity_type                  = "public" -> null
+      - id                                 = "nat-0ccce89a1ab903e0b" -> null
+      - network_interface_id               = "eni-0aaf2b60ada3df877" -> null
+      - private_ip                         = "10.0.101.185" -> null
+      - public_ip                          = "184.73.151.208" -> null
+      - secondary_allocation_ids           = [] -> null
+      - secondary_private_ip_address_count = 0 -> null
+      - secondary_private_ip_addresses     = [] -> null
+      - subnet_id                          = "subnet-08e1ba9cd738358f5" -> null
+      - tags                               = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-us-east-1a"
+        } -> null
+      - tags_all                           = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-us-east-1a"
+        } -> null
+    }
+
+  # module.vpc.aws_route.private_nat_gateway[0] will be destroyed
+  - resource "aws_route" "private_nat_gateway" {
+      - destination_cidr_block      = "0.0.0.0/0" -> null
+      - id                          = "r-rtb-030e9c8859626973a1080289494" -> null
+      - nat_gateway_id              = "nat-0ccce89a1ab903e0b" -> null
+      - origin                      = "CreateRoute" -> null
+      - route_table_id              = "rtb-030e9c8859626973a" -> null
+      - state                       = "active" -> null
+        # (13 unchanged attributes hidden)
+
+      - timeouts {
+          - create = "5m" -> null
+        }
+    }
+
+  # module.vpc.aws_route.public_internet_gateway[0] will be destroyed
+  - resource "aws_route" "public_internet_gateway" {
+      - destination_cidr_block      = "0.0.0.0/0" -> null
+      - gateway_id                  = "igw-0bba2b9598e8e623a" -> null
+      - id                          = "r-rtb-0d940071ff0854bab1080289494" -> null
+      - origin                      = "CreateRoute" -> null
+      - route_table_id              = "rtb-0d940071ff0854bab" -> null
+      - state                       = "active" -> null
+        # (13 unchanged attributes hidden)
+
+      - timeouts {
+          - create = "5m" -> null
+        }
+    }
+
+  # module.vpc.aws_route_table.private[0] will be destroyed
+  - resource "aws_route_table" "private" {
+      - arn              = "arn:aws:ec2:us-east-1:333554215670:route-table/rtb-030e9c8859626973a" -> null
+      - id               = "rtb-030e9c8859626973a" -> null
+      - owner_id         = "333554215670" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - nat_gateway_id             = "nat-0ccce89a1ab903e0b"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private"
+        } -> null
+      - tags_all         = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private"
+        } -> null
+      - vpc_id           = "vpc-0550dd2ccf3bafd8f" -> null
+    }
+
+  # module.vpc.aws_route_table.public[0] will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:us-east-1:333554215670:route-table/rtb-0d940071ff0854bab" -> null
+      - id               = "rtb-0d940071ff0854bab" -> null
+      - owner_id         = "333554215670" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0bba2b9598e8e623a"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public"
+        } -> null
+      - tags_all         = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public"
+        } -> null
+      - vpc_id           = "vpc-0550dd2ccf3bafd8f" -> null
+    }
+
+  # module.vpc.aws_route_table_association.private[0] will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-051b18007a0565798" -> null
+      - route_table_id = "rtb-030e9c8859626973a" -> null
+      - subnet_id      = "subnet-0c6628c6e4c8324f4" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.private[1] will be destroyed
+  - resource "aws_route_table_association" "private" {
+      - id             = "rtbassoc-095bd3fb30bf77ffa" -> null
+      - route_table_id = "rtb-030e9c8859626973a" -> null
+      - subnet_id      = "subnet-019e12c94340e72dc" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.public[0] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0a4077fe14bbee3d9" -> null
+      - route_table_id = "rtb-0d940071ff0854bab" -> null
+      - subnet_id      = "subnet-08e1ba9cd738358f5" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_route_table_association.public[1] will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-0ecb864010072729f" -> null
+      - route_table_id = "rtb-0d940071ff0854bab" -> null
+      - subnet_id      = "subnet-0797152fee2b32587" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.vpc.aws_subnet.private[0] will be destroyed
+  - resource "aws_subnet" "private" {
+      - arn                                            = "arn:aws:ec2:us-east-1:333554215670:subnet/subnet-0c6628c6e4c8324f4" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1a" -> null
+      - availability_zone_id                           = "use1-az6" -> null
+      - cidr_block                                     = "10.0.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0c6628c6e4c8324f4" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "333554215670" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private-us-east-1a"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private-us-east-1a"
+        } -> null
+      - vpc_id                                         = "vpc-0550dd2ccf3bafd8f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.private[1] will be destroyed
+  - resource "aws_subnet" "private" {
+      - arn                                            = "arn:aws:ec2:us-east-1:333554215670:subnet/subnet-019e12c94340e72dc" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.0.2.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-019e12c94340e72dc" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "333554215670" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private-us-east-1b"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-private-us-east-1b"
+        } -> null
+      - vpc_id                                         = "vpc-0550dd2ccf3bafd8f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.public[0] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:us-east-1:333554215670:subnet/subnet-08e1ba9cd738358f5" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1a" -> null
+      - availability_zone_id                           = "use1-az6" -> null
+      - cidr_block                                     = "10.0.101.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-08e1ba9cd738358f5" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "333554215670" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public-us-east-1a"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public-us-east-1a"
+        } -> null
+      - vpc_id                                         = "vpc-0550dd2ccf3bafd8f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_subnet.public[1] will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:us-east-1:333554215670:subnet/subnet-0797152fee2b32587" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1b" -> null
+      - availability_zone_id                           = "use1-az1" -> null
+      - cidr_block                                     = "10.0.102.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0797152fee2b32587" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = false -> null
+      - owner_id                                       = "333554215670" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public-us-east-1b"
+        } -> null
+      - tags_all                                       = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc-public-us-east-1b"
+        } -> null
+      - vpc_id                                         = "vpc-0550dd2ccf3bafd8f" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.vpc.aws_vpc.this[0] will be destroyed
+  - resource "aws_vpc" "this" {
+      - arn                                  = "arn:aws:ec2:us-east-1:333554215670:vpc/vpc-0550dd2ccf3bafd8f" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.0.0.0/16" -> null
+      - default_network_acl_id               = "acl-0deafacfdbc92b18c" -> null
+      - default_route_table_id               = "rtb-0965ba9a17c154f6c" -> null
+      - default_security_group_id            = "sg-0ce56a66c3f7f0bc1" -> null
+      - dhcp_options_id                      = "dopt-0292b728c1b18a6d7" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0550dd2ccf3bafd8f" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0965ba9a17c154f6c" -> null
+      - owner_id                             = "333554215670" -> null
+      - tags                                 = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc"
+        } -> null
+      - tags_all                             = {
+          - "Environment" = "prod"
+          - "Name"        = "prod-vpc"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 29 to destroy.
+
+Changes to Outputs:
+  - alb_dns_name = "prod-alb-1489230757.us-east-1.elb.amazonaws.com" -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+module.vpc.aws_route_table_association.public[0]: Destroying... [id=rtbassoc-0a4077fe14bbee3d9]
+module.vpc.aws_route_table_association.private[1]: Destroying... [id=rtbassoc-095bd3fb30bf77ffa]
+module.vpc.aws_default_security_group.this[0]: Destroying... [id=sg-0ce56a66c3f7f0bc1]
+module.vpc.aws_route_table_association.private[0]: Destroying... [id=rtbassoc-051b18007a0565798]
+module.vpc.aws_default_route_table.default[0]: Destroying... [id=rtb-0965ba9a17c154f6c]
+module.vpc.aws_route.public_internet_gateway[0]: Destroying... [id=r-rtb-0d940071ff0854bab1080289494]
+module.vpc.aws_route_table_association.public[1]: Destroying... [id=rtbassoc-0ecb864010072729f]
+module.vpc.aws_route.private_nat_gateway[0]: Destroying... [id=r-rtb-030e9c8859626973a1080289494]
+aws_ecs_service.main: Destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service]
+module.vpc.aws_default_network_acl.this[0]: Destroying... [id=acl-0deafacfdbc92b18c]
+module.vpc.aws_default_route_table.default[0]: Destruction complete after 0s
+module.vpc.aws_default_security_group.this[0]: Destruction complete after 0s
+module.vpc.aws_default_network_acl.this[0]: Destruction complete after 0s
+module.vpc.aws_route_table_association.public[1]: Destruction complete after 1s
+module.vpc.aws_route_table_association.private[0]: Destruction complete after 1s
+module.vpc.aws_route_table_association.public[0]: Destruction complete after 1s
+module.vpc.aws_route_table_association.private[1]: Destruction complete after 1s
+module.vpc.aws_route.private_nat_gateway[0]: Destruction complete after 2s
+module.vpc.aws_route_table.private[0]: Destroying... [id=rtb-030e9c8859626973a]
+module.vpc.aws_nat_gateway.this[0]: Destroying... [id=nat-0ccce89a1ab903e0b]
+module.vpc.aws_route.public_internet_gateway[0]: Destruction complete after 2s
+module.vpc.aws_route_table.public[0]: Destroying... [id=rtb-0d940071ff0854bab]
+module.vpc.aws_route_table.private[0]: Destruction complete after 1s
+module.vpc.aws_route_table.public[0]: Destruction complete after 2s
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-0ccce89a1ab903e0b, 10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-0ccce89a1ab903e0b, 20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 30s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-0ccce89a1ab903e0b, 30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 40s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-0ccce89a1ab903e0b, 40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-0ccce89a1ab903e0b, 50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Destruction complete after 52s
+module.vpc.aws_eip.nat[0]: Destroying... [id=eipalloc-0f694e3c397ab9316]
+module.vpc.aws_eip.nat[0]: Destruction complete after 2s
+module.vpc.aws_internet_gateway.this[0]: Destroying... [id=igw-0bba2b9598e8e623a]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 1m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 1m50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 2m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 2m50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 3m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 3m50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 4m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 4m50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 5m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m20s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m30s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m30s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m40s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m40s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 5m50s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 6m50s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m0s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 7m0s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m10s elapsed]
+aws_ecs_service.main: Still destroying... [id=arn:aws:ecs:us-east-1:333554215670:service/prod-cluster/prod-service, 7m10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m20s elapsed]
+aws_ecs_service.main: Destruction complete after 7m18s
+aws_iam_role_policy_attachment.ecs_exec: Destroying... [id=prod-ecs-exec-role-20250415154133887800000001]
+aws_ecs_cluster.main: Destroying... [id=arn:aws:ecs:us-east-1:333554215670:cluster/prod-cluster]
+module.vpc.aws_subnet.private[0]: Destroying... [id=subnet-0c6628c6e4c8324f4]
+aws_security_group.ecs: Destroying... [id=sg-05c82b8b3b30d72e9]
+module.vpc.aws_subnet.private[1]: Destroying... [id=subnet-019e12c94340e72dc]
+aws_ecs_task_definition.app: Destroying... [id=prod-task]
+aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:listener/app/prod-alb/3ec6b81c1e367b68/8787d3ce93374c30]
+aws_ecs_task_definition.app: Destruction complete after 1s
+aws_ecs_cluster.main: Destruction complete after 1s
+aws_iam_role_policy_attachment.ecs_exec: Destruction complete after 1s
+aws_iam_role.ecs_exec: Destroying... [id=prod-ecs-exec-role]
+aws_lb_listener.http: Destruction complete after 2s
+aws_lb.main: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:loadbalancer/app/prod-alb/3ec6b81c1e367b68]
+aws_lb_target_group.main: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:333554215670:targetgroup/prod-tg/aaefd6c3c6a415d7]
+aws_lb_target_group.main: Destruction complete after 0s
+module.vpc.aws_subnet.private[0]: Destruction complete after 2s
+module.vpc.aws_subnet.private[1]: Destruction complete after 2s
+aws_iam_role.ecs_exec: Destruction complete after 1s
+aws_security_group.ecs: Destruction complete after 3s
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m30s elapsed]
+aws_lb.main: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...balancer/app/prod-alb/3ec6b81c1e367b68, 10s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m40s elapsed]
+aws_lb.main: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...balancer/app/prod-alb/3ec6b81c1e367b68, 20s elapsed]
+module.vpc.aws_internet_gateway.this[0]: Still destroying... [id=igw-0bba2b9598e8e623a, 6m50s elapsed]
+aws_lb.main: Destruction complete after 29s
+module.vpc.aws_subnet.public[1]: Destroying... [id=subnet-0797152fee2b32587]
+module.vpc.aws_subnet.public[0]: Destroying... [id=subnet-08e1ba9cd738358f5]
+aws_security_group.alb: Destroying... [id=sg-065e2ae9a46e240dd]
+module.vpc.aws_internet_gateway.this[0]: Destruction complete after 6m54s
+module.vpc.aws_subnet.public[1]: Destruction complete after 2s
+module.vpc.aws_subnet.public[0]: Destruction complete after 7s
+aws_security_group.alb: Destruction complete after 7s
+module.vpc.aws_vpc.this[0]: Destroying... [id=vpc-0550dd2ccf3bafd8f]
+module.vpc.aws_vpc.this[0]: Destruction complete after 1s
