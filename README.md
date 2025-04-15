@@ -62,8 +62,8 @@ cd particle41-devops-challenge
 ### 2. Build & Push Docker Image
 ```bash
 cd app
-docker build -t subhanshumg/simple-time-service:latest .
-docker push subhanshumg/simple-time-service:latest
+docker build -t <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest .
+docker push <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest
 ```
 
 ### 3. Deploy Infrastructure
@@ -74,10 +74,10 @@ cd terraform
 terraform init
 
 # Review execution plan
-terraform plan -var="container_image=subhanshumg/simple-time-service:latest"
+terraform plan -var="container_image=<YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest"
 
 # Apply configuration
-terraform apply -var="container_image=subhanshumg/simple-time-service:latest"
+terraform apply -var="container_image=<YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest"
 ```
 
 ### 4. Verify Deployment
@@ -175,9 +175,9 @@ Verify output confirms removal of:
 terraform destroy
 
 # Remove Docker image
-docker rmi subhanshumg/simple-time-service:latest
+docker rmi <YOUR_DOCKERHUB_USERNAME>/simple-time-service:latest
 ```
 
 ---
 
-**Note**: Replace `subhanshumg` and `<YOUR_IMAGE_URL>` with your actual Docker credentials before deployment.
+**Note**: Replace `<YOUR_DOCKERHUB_USERNAME>` and `<YOUR_IMAGE_URL>` with your actual Docker credentials before deployment.
